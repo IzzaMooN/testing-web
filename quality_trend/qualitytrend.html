@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quality Trend System</title>
+    <link rel="stylesheet" href="../../utility/lib/font-awesome/css/all.min.css">
+    <link rel="stylesheet" href="css/variables.css">
+</head>
+<body>
+    <!-- Auth Warning Banner (akan ditampilkan oleh auth.js) -->
+    <div id="auth-warning-banner" style="display: none;"></div>
+    
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-chart-line"></i>
+                    <h1>Quality Trend System</h1>
+                </div>
+                
+                <!-- Tab Navigation -->
+                <div class="nav-tabs">
+                    <a href="#" data-tab="trendlist" class="active">
+                        <i class="fas fa-list"></i> Trend List
+                    </a>
+                    <a href="#" data-tab="trendchart">
+                        <i class="fas fa-chart-line"></i> Trend Chart
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </header>
+
+    
+
+    <!-- TREND LIST TAB -->
+    <div id="trendlist-tab" class="tab-content active">
+        <section class="template-list">
+            <div class="container">
+                <div class="section-header">
+                    <h2><i class="fas fa-list"></i> Daftar Template</h2>
+                </div>
+
+                <div class="section-header">
+                    <!-- Date Filter Section -->
+                    <div class="date-filter">
+                        <label for="start-date">Dari:</label>
+                        <input type="date" id="start-date" class="date-input">
+                        <label for="end-date">Hingga:</label>
+                        <input type="date" id="end-date" class="date-input">
+                    </div>
+                    <button class="btn-sm btn-primary" onclick="showTagSettings()">
+                        <i class="fas fa-plus"></i> Template Baru
+                    </button>
+                </div>
+                
+                <div class="table-container">
+                    <table class="template-table">
+                        <thead>
+                            <tr>
+                                <th>Nama Template</th>
+                                <th>Deskripsi</th>
+                                <th>Jumlah Tag</th>
+                                <th>Terakhir Diupdate</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="template-table-body">
+                            <!-- Data template akan diisi secara dinamis -->
+                            <tr>
+                                <td colspan="5" class="empty-table-message">
+                                    <i class="fas fa-inbox"></i>
+                                    <p>Belum ada template yang tersimpan</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <div class="container">
+            <!-- Custom Selector (Modal for tag settings) -->
+            <section class="custom-selector" id="custom-selector" style="display: none;">
+                <div class="custom-header">
+                    <h2><i class="fas fa-cogs"></i> Setting Tags</h2>
+                    <button class="close-custom-btn" onclick="hideCustomSelector()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                
+                <div class="custom-content">
+                    <div class="picklist-section">
+                        <div class="picklist-container">
+                            <!-- Available Tags Column -->
+                            <div class="picklist-column">
+                                <div class="template-identity">
+                                    <span>Nama Template</span>
+                                    <input type="text" name="template-name" id="template-name" placeholder="Tuliskan Nama Template...">
+                                </div>
+                                <div class="picklist-tab">
+                                    <div class="picklist-header">
+                                        <span>Available Tags</span>
+                                        <span class="picklist-count" id="available-count">0</span>
+                                    </div>
+                                    <div class="plant-buttons-inside" id="plant-buttons-inside">
+                                        <!-- Plant buttons akan di-generate secara dinamis -->
+                                    </div>
+                                    <div class="tag-search">
+                                        <input type="text" id="tag-search" placeholder="Cari tag..." class="search-input">
+                                        <i class="fas fa-search"></i>
+                                    </div>
+                                    <div class="picklist-content" id="available-tags-list">
+                                        <!-- Available tags will be loaded here -->
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Action Buttons -->
+                            <div class="picklist-actions">
+                                <button class="picklist-action-btn secondary" onclick="selectAllTags()" title="Pilih semua">
+                                    <i class="fa-solid fa-angles-right"></i>
+                                </button>
+                                <button class="picklist-action-btn secondary" onclick="clearSelection()" title="Hapus semua">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                            
+                            <!-- Selected Tags Column -->
+                            <div class="picklist-column">
+                                <div class="template-identity">
+                                    <span>Deskripsi Template</span>
+                                    <input type="text" name="template-desc" id="template-desc" placeholder="Deskripsi Untuk Template...">
+                                </div>
+                                <div class="picklist-tab">
+                                    <div class="picklist-header">
+                                        <span>Selected Tags</span>
+                                        <span class="picklist-count" id="selected-count">0</span>
+                                    </div>
+                                    <div class="picklist-content" id="selected-tags-list">
+                                        <!-- Selected tags will be loaded here -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="selection-actions">
+                        <button class="btn-sm btn-outline" onclick="clearSelection()">
+                            <i class="fas fa-trash"></i> Clear All
+                        </button>
+                        <button class="btn-sm btn-primary" onclick="saveTagSettings()">
+                            <i class="fas fa-save"></i> Simpan Template
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Debug Information -->
+            <div id="debug-info" class="debug-info" style="display: none;"></div>
+
+            <!-- Error Message -->
+            <div id="error-message" class="error-message" style="display: none;"></div>
+        </div>
+    </div>
+
+    <!-- TREND CHART TAB -->
+    <div id="trendchart-tab" class="tab-content">
+        <!-- Chart Header -->
+        <div class="chart-header">
+            <div class="chart-info">
+                <div class="template-info">
+                    <div class="template-name" id="template-name-display">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Belum ada template yang dipilih</span>
+                    </div>
+                    <div class="template-details">
+                        <!-- TETAP PERTAHANKAN TAG COUNT DISPLAY -->
+                        <div class="detail-item" id="tag-count-display">
+                            <i class="fas fa-tags"></i>
+                            <span>0 tags</span>
+                        </div>
+                        
+                        <!-- TAMBAHKAN DATE FILTER DI SAMPINGNYA -->
+                        <div class="trend-date-filter">
+                            <label for="trend-start-date">Dari:</label>
+                            <input type="date" id="trend-start-date" class="trend-date-input">
+                            <label for="trend-end-date">Hingga:</label>
+                            <input type="date" id="trend-end-date" class="trend-date-input">
+                            <button id="reload-chart-btn" class="btn-sm btn-primary" title="Reload chart dengan tanggal baru">
+                                <i class="fas fa-redo"></i> Reload Chart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <button class="back-button" id="back-to-trendlist-btn">
+                    <i class="fas fa-arrow-left"></i>
+                    Kembali ke Trend List
+                </button>
+            </div>
+        </div>
+
+        <div class="container">
+            <!-- Error Message khusus chart -->
+            <div id="chart-error-message" class="chart-error" style="display: none;"></div>
+
+            <!-- Loading State khusus chart -->
+            <div id="chart-loading" class="chart-loading" style="display: none;">
+                <div class="loading-spinner"></div>
+                <p>Memuat chart...</p>
+            </div>
+
+            <!-- Tag Sections Container -->
+            <div id="tag-sections">
+                <!-- Tag sections will be dynamically generated -->
+            </div>
+
+            <!-- Empty State khusus chart -->
+            <div id="chart-empty-state" class="chart-empty-state" style="display: none;">
+                <i class="fas fa-chart-bar"></i>
+                <h3>Belum ada chart yang ditampilkan</h3>
+                <p>Pilih template dari Trend List untuk menampilkan chart</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Include Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    
+    <!-- Include Main Handler -->
+    <script src="js/plugin-api.js"></script>
+    <script src="js/mainhandler.js"></script>
+</body>
+</html>

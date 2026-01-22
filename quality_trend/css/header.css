@@ -1,0 +1,128 @@
+/* Enhanced Header */
+header {
+    background: var(--gradient-1);
+    color: white;
+    box-shadow: var(--shadow-lg);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    animation: slideDown 0.5s ease;
+    padding: 10px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo i {
+    font-size: 1.5rem;
+    background: rgba(255,255,255,0.2);
+    padding: 10px;
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+}
+
+.logo h1 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    background: linear-gradient(45deg, #fff, #e0e7ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.date-filter {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--gradient-1);
+    padding: 10px 18px;
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+.date-filter label {
+    color: var(--light);
+}
+
+.date-input {
+    background: rgba(255,255,255,0.9);
+    color: var(--dark);
+    border: none;
+    padding: 5px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-sm);
+}
+
+.date-input:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.3);
+    transform: translateY(-1px);
+}
+
+.trend-date-filter {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--light);
+    padding: 5px 18px;
+    border-radius: 5px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+.trend-date-filter label {
+    color: var(--darker);
+    font-weight: bold;
+}
+
+.trend-date-input {
+    background: rgba(255,255,255,0.9);
+    color: var(--dark);
+    border: none;
+    padding: 5px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-sm);
+}
+
+.trend-date-input:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.3);
+    transform: translateY(-1px);
+}
+
+.apply-btn {
+    background: var(--success);
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: var(--shadow-md);
+}
+
+.apply-btn:hover {
+    background: #0da271;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}

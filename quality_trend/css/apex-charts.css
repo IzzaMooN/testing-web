@@ -1,0 +1,40 @@
+/* ApexCharts Tooltip Customization */
+.apexcharts-tooltip {
+    background: #fff !important;
+    border: 1px solid #e5e7eb !important;
+    border-radius: 6px !important;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
+}
+
+.apexcharts-tooltip-box {
+    padding: 8px 12px;
+}
+
+.tooltip-warning {
+    color: #dc2626;
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+
+.tooltip-reason {
+    color: #6b7280;
+    font-size: 12px;
+}
+
+/* ApexCharts Zoom Selection */
+.apexcharts-selection-rect {
+    stroke: #3b82f6;
+    stroke-width: 1;
+    fill: rgba(59, 130, 246, 0.1);
+}
+
+/* Chart Container Styling */
+.chart-container {
+    position: relative;
+    height: 275px;
+    margin-bottom: 20px;
+}
+
+.chart-container > div {
+    height: 100% !important;
+}

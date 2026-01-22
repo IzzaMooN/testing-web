@@ -1,0 +1,49 @@
+@media (max-width: 1600px) {
+    .table-container {
+        max-height: 400px;
+    }
+    .picklist-tab {
+        max-height: 450px;
+    }
+    .modal-header {
+        padding: 1rem 1.5rem;
+    }
+    .modal-body {
+        padding: 1rem 1.5rem;
+    }
+    .profile-avatar {
+        margin-bottom: 1rem 1.5rem;
+    }
+    .profile-avatar i {
+        font-size: 2rem;
+        width: 75px;
+        height: 75px;
+    }
+    .profile-item {
+        padding: 0.55rem 0.75rem;
+    }
+}
+
+@media (max-width: 1200px) {
+
+}
+
+@media (max-width: 1024px) {
+
+}
+
+@media (max-width: 950px) {
+
+}
+
+@media (max-width: 768px) {
+
+}
+
+@media (max-width: 480px) {
+
+}
+
+@media (max-width: 360px) {
+
+}

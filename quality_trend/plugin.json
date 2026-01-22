@@ -1,0 +1,13 @@
+{
+    "plugin_name": "Quality Trend",
+    "plugin_slug": "trend-management",
+    "description": "Sistem Trend Otomatis",
+    "version": "1.0.0",
+    "icon": "fa-solid fa-chart-column",
+    "entry_point": "qualitytrend.html",
+    "is_core": false,
+    "settings": {
+        "category": "quality",
+        "permissions": ["read", "write", "delete"]
+    }
+}
